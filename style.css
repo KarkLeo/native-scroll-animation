@@ -1,0 +1,159 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 2rem;
+    background-color: #efefef;
+    color: #666;
+}
+
+.root {
+    max-width: 120rem;
+    width: 100%;
+    padding: 2rem;
+    margin: 10rem auto;
+}
+
+h1 {
+    margin: 6rem 0;
+
+    font-size: 5rem;
+    text-align: center;
+    color: #666;
+}
+
+h2 {
+    margin: 3rem 0 10rem;
+
+    font-size: 3rem;
+    text-align: center;
+    color: #666;
+}
+h2 a {
+    color: #666;
+}
+h2 a:hover {
+    color: #8e8e8e;
+}
+
+
+p {
+    padding: 6rem;
+    box-sizing: border-box;
+
+    font: 3.6rem;
+
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: .5rem;
+    box-shadow: 0 1rem 1rem 0 #ddd;
+}
+p.anim {
+    opacity: 0;
+    transition: opacity 1.6s ease-in-out;
+}
+p.anim.animStart {
+    opacity: 1;
+}
+
+.item__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 3rem -1rem;
+}
+.item {
+    width: 20%;
+    min-width: 20rem;
+    flex-grow: 2;
+    margin: 1rem;
+    padding: 2rem;
+    box-sizing: border-box;
+
+    font-size: 1.2rem;
+
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: .5rem;
+    box-shadow: 0 1rem 1rem 0 #ddd;
+}
+.item.anim {
+    opacity: 0;
+    transform: translateY(-5rem);
+    transition: all 1s ease-in-out;
+}
+.item.anim.animStart {
+    opacity: 1;
+    transform: none;
+}
+
+h3 {
+    margin: 15rem 0 10rem;
+
+    font-size: 2.6rem;
+    text-align: center;
+    color: #666;
+}
+
+.track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    margin: 2rem 0;
+
+    font-size: 2.4rem;
+
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: .5rem;
+    box-shadow: 0 1rem 1rem 0 #ddd;
+}
+
+
+.track.anim {
+    opacity: .25;
+    transition: all 1.6s ease-in-out;
+    transform: perspective(100rem) rotateX(-65deg)
+}
+.track.anim.animStart {
+    opacity: 1;
+}
+
+@keyframes animTopIn {
+    0% {transform: perspective(100rem) rotateX(65deg)}
+    100% {transform: perspective(100rem) rotateX(0deg)}
+}
+
+@keyframes animTopOut {
+    0% {transform: perspective(100rem) rotateX(0deg)}
+    100% {transform: perspective(100rem) rotateX(65deg)}
+}
+
+@keyframes animBottomIn {
+    0% {transform: perspective(100rem) rotateX(-65deg)}
+    100% {transform: perspective(100rem) rotateX(0deg)}
+}
+
+@keyframes animBottomOut {
+    0% {transform: perspective(100rem) rotateX(0deg)}
+    100% {transform: perspective(100rem) rotateX(-65deg)}
+}
+.animTopIn {
+    animation: animTopIn 1s ease-in-out both;
+}
+.animTopOut {
+    animation: animTopOut 1s ease-in-out both;
+}
+.animBottomIn {
+    animation: animBottomIn 1s ease-in-out both;
+}
+.animBottomOut {
+    animation: animBottomOut 1s ease-in-out both;
+}
