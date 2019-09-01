@@ -63,8 +63,7 @@ function scrollAnim (params) {
                     item
                         .querySelectorAll(`.${animationClass}`)
                         .forEach((element, i) => {
-                            delay = i !== 0 ? delayLimit * (1 - 1.625 / (i + 1)) : 0;
-                            element.style.cssText = `${animationType}-delay: ${delay}ms;`
+                            element.style.cssText = `${animationType}-delay: ${i !== 0 ? delayLimit * (1 - 1.5 / (i + 1)) : 0}ms;`
                         })
                 });
         }
