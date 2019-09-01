@@ -118,9 +118,9 @@ h3 {
 
 
 .track.anim {
-    opacity: .25;
+    opacity: .35;
     transition: all 1.6s ease-in-out;
-    transform: perspective(100rem) rotateX(-65deg)
+    transform: perspective(100rem) rotateX(-90deg)
 }
 .track.anim.animStart {
     opacity: 1;
