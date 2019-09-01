@@ -14,6 +14,7 @@ body {
     width: 100%;
     padding: 2rem;
     margin: 10rem auto;
+    box-sizing: border-box;
 }
 
 h1 {
