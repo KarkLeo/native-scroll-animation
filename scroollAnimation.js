@@ -63,7 +63,7 @@ function scrollAnim (params) {
                     item
                         .querySelectorAll(`.${animationClass}`)
                         .forEach((element, i) => {
-                            element.style.cssText = `${animationType}-delay: ${i !== 0 ? delayLimit * (1 - 1.5 / (i + 1)) : 0}ms;`
+                            element.style.cssText = `${animationType}-delay: ${i !== 0 ? delayLimit * (1 - 1 / (i + 1)) : 0}ms;`
                         })
                 });
         }
@@ -72,7 +72,10 @@ function scrollAnim (params) {
     //Add animation delay for group
     let setVisibleStatus = (element) => {
       let
-          coords = element.getBoundingClientRect(),
+          coords = {
+            top: element.offsetTop - window.pageYOffset,
+            bottom: element.offsetTop - window.pageYOffset + element.offsetHeight
+          },
           windowHeight = document.documentElement.clientHeight,
 
           visibleStatus = element.dataset.scrollVisibleStatus === 'true',
