@@ -13,9 +13,8 @@ function scrollAnim (params) {
 
         elements = Array.isArray(params.elements) ? params.elements : null,
 
-        groups = Array.isArray(params.groups) ? params.groups : null,
         animationType = params.animationType === 'transition' || params.animationType === 'animation' ? params.animationType : 'transition',
-        delayLimit = typeof params.delayLimit === 'number' && params.delayLimit > 0 ? params.delayLimit : 150,
+        delayLimit = typeof params.delayLimit === 'number' && params.delayLimit > 0 ? params.delayLimit : 0,
 
         offsetTop = typeof params.offsetTop === 'number' ? params.offsetTop : 0,
         offsetBottom = typeof params.offsetBottom === 'number' ? params.offsetBottom : 0,
@@ -53,20 +52,9 @@ function scrollAnim (params) {
         }
     };
 
-    //Setting the animation status
-    let addAnimationDelay = () => {
-        if (groups !== null) {
-            document
-                .querySelectorAll(String(groups))
-                .forEach((item) => {
-                    let delay = 0;
-                    item
-                        .querySelectorAll(`.${animationClass}`)
-                        .forEach((element, i) => {
-                            element.style.cssText = `${animationType}-delay: ${i !== 0 ? delayLimit * (1 - 1 / (i + 1)) : 0}ms;`
-                        })
-                });
-        }
+    //Set animation delay
+    let setAminationDelay = (element, number) => {
+        if (delayLimit !== 0) element.style.cssText = `${animationType}-delay: ${number !== 0 ? delayLimit * (1 - 1 / (number + 1)) : 0}ms;`
     };
 
     //Add animation delay for group
@@ -86,8 +74,11 @@ function scrollAnim (params) {
           direction = coords.top <= windowHeight - coords.bottom;
 
       if ( visibleOnScreen && !visibleStatus) {
+          setAminationDelay(element, i);
+          i++;
           element.dataset.scrollVisibleStatus = 'true';
           element.classList.add(animationClassStart);
+
           if (callback !== null) callback (element);
 
           if (direction) { if (callbackFromTopIn !== null) callbackFromTopIn (element) }
@@ -97,14 +88,16 @@ function scrollAnim (params) {
       if ( !visibleOnScreen && visibleStatus && reverse) {
           element.dataset.scrollVisibleStatus = 'false';
           element.classList.remove(animationClassStart);
+          setAminationDelay(element, 0)
 
           if (direction) { if (callbackToTopOut !== null) callbackToTopOut (element) }
           else { if (callbackToBottomOut !== null) callbackToBottomOut (element) }
       }
     };
-
+    let i = 0;
     // Checking all elements
     let listenElement = () => {
+        i = 0
         arrayElem.forEach((element) => {
             setVisibleStatus(element)
         })
@@ -152,7 +145,6 @@ function scrollAnim (params) {
         resolve();
     });
     promiseAnimation
-        .then(() => addAnimationDelay())
         .then(() => {
             window.addEventListener('scroll', listenElement);
             listenElement();
