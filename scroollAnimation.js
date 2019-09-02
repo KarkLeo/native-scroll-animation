@@ -14,7 +14,7 @@ function scrollAnim (params) {
         elements = Array.isArray(params.elements) ? params.elements : null,
 
         animationType = params.animationType === 'transition' || params.animationType === 'animation' ? params.animationType : 'transition',
-        delayLimit = typeof params.delayLimit === 'number' && params.delayLimit > 0 ? params.delayLimit : 0,
+        delayStep = typeof params.delayStep === 'number' && params.delayStep > 0 ? params.delayStep : 0,
 
         offsetTop = typeof params.offsetTop === 'number' ? params.offsetTop : 0,
         offsetBottom = typeof params.offsetBottom === 'number' ? params.offsetBottom : 0,
@@ -53,9 +53,12 @@ function scrollAnim (params) {
     };
 
     //Set animation delay
+    let smoothDelay = (x) => x === 0 ? 0 :  2 * delayStep / (x + 1) + smoothDelay(x - 1);
     let setAminationDelay = (element, number) => {
-        if (delayLimit !== 0) element.style.cssText = `${animationType}-delay: ${number !== 0 ? delayLimit * (1 - 1 / (number + 1)) : 0}ms;`
+        if (delayStep !== 0) element.style[`${animationType}Delay`] = `${smoothDelay(number)}ms`
     };
+
+
 
     //Add animation delay for group
     let setVisibleStatus = (element) => {
@@ -146,7 +149,9 @@ function scrollAnim (params) {
     });
     promiseAnimation
         .then(() => {
-            window.addEventListener('scroll', listenElement);
             listenElement();
+        })
+        .then(() => {
+            window.addEventListener('scroll', listenElement);
         })
 }

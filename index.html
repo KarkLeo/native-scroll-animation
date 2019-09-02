@@ -165,57 +165,59 @@
 
 <script type="text/javascript" src="./scroollAnimation.js"></script>
 <script type="text/javascript">
-    scrollAnim ({
-        animationClass: 'anim',
-        animationClassStart: 'animStart',
-        reverse: true,
+    document.addEventListener("DOMContentLoaded", () => {
+        scrollAnim ({
+            animationClass: 'anim',
+            animationClassStart: 'animStart',
+            reverse: true,
 
-        elements: [
-            'p',
-            '.item'
-        ],
+            elements: [
+                'p',
+                '.item'
+            ],
 
-        animationType: 'transition',
-        delayLimit: 600,
+            animationType: 'transition',
+            delayStep: 200,
 
-        offsetTop: 250,
-        offsetBottom: 250,
-        trigger: true,
-    });
+            offsetTop: 250,
+            offsetBottom: 250,
+            trigger: true,
+        });
 
-    scrollAnim ({
-        animationClass: 'anim',
-        animationClassStart: 'animStart',
-        reverse: true,
+        scrollAnim ({
+            animationClass: 'anim',
+            animationClassStart: 'animStart',
+            reverse: true,
 
-        elements: [
-            '.track'
-        ],
+            elements: [
+                '.track'
+            ],
 
-        offsetTop: 250,
-        offsetBottom: 250,
-        trigger: true,
+            offsetTop: 250,
+            offsetBottom: 250,
+            trigger: true,
 
-        callback: (element) => {
-            element.classList.remove('animTopIn', 'animTopOut', 'animBottomIn', 'animBottomOut');
-            element.classList.add('animTopIn')
-        },
-        callbackFromTopIn: (element) => {
-            element.classList.remove('animTopIn', 'animTopOut', 'animBottomIn', 'animBottomOut');
-            element.classList.add('animTopIn')
-        },
-        callbackFromBottomIn: (element) => {
-            element.classList.remove('animTopIn', 'animTopOut', 'animBottomIn', 'animBottomOut');
-            element.classList.add('animBottomIn')
-        },
-        callbackToTopOut: (element) => {
-            element.classList.remove('animTopIn', 'animTopOut', 'animBottomIn', 'animBottomOut');
-            element.classList.add('animTopOut')
-        },
-        callbackToBottomOut: (element) => {
-            element.classList.remove('animTopIn', 'animTopOut', 'animBottomIn', 'animBottomOut');
-            element.classList.add('animBottomOut')
-        }
+            callback: (element) => {
+                element.classList.remove('animTopIn', 'animTopOut', 'animBottomIn', 'animBottomOut');
+                element.classList.add('animTopIn')
+            },
+            callbackFromTopIn: (element) => {
+                element.classList.remove('animTopIn', 'animTopOut', 'animBottomIn', 'animBottomOut');
+                element.classList.add('animTopIn')
+            },
+            callbackFromBottomIn: (element) => {
+                element.classList.remove('animTopIn', 'animTopOut', 'animBottomIn', 'animBottomOut');
+                element.classList.add('animBottomIn')
+            },
+            callbackToTopOut: (element) => {
+                element.classList.remove('animTopIn', 'animTopOut', 'animBottomIn', 'animBottomOut');
+                element.classList.add('animTopOut')
+            },
+            callbackToBottomOut: (element) => {
+                element.classList.remove('animTopIn', 'animTopOut', 'animBottomIn', 'animBottomOut');
+                element.classList.add('animBottomOut')
+            }
+        });
     });
 </script>
 
