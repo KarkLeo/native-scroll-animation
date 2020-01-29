@@ -58,14 +58,17 @@ function scrollAnim (params) {
         if (delayStep !== 0) element.style[`${animationType}Delay`] = `${smoothDelay(number)}ms`
     };
 
-
-
+    
+    //Get offset top with position context     
+    let getFullOffsetTop = (element) => element.offsetTop +
+        (element.offsetParent == document.body ? 0 : getFullOffsetTop(element.offsetParent));
+    
     //Add animation delay for group
     let setVisibleStatus = (element) => {
       let
           coords = {
-            top: element.offsetTop - window.pageYOffset,
-            bottom: element.offsetTop - window.pageYOffset + element.offsetHeight
+            top: getFullOffsetTop(element) - window.pageYOffset,
+            bottom: getFullOffsetTop(element) - window.pageYOffset + element.offsetHeight
           },
           windowHeight = document.documentElement.clientHeight,
 
